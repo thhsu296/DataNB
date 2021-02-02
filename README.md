@@ -1,7 +1,5 @@
-# DataNB
+# Fetching New Brunswidk COVID-19 Data
 Fetching data of the COVID-19 cases in New Brunswick, Canada
-
-# NB Data Fetching
 
 ## The Task
 
@@ -26,7 +24,7 @@ For instance,
 Entries in the table are the number of new cases
 for the corresponding dates and labels.
 
-The descriptive sentances
+The descriptive sentences
 are from webpages reporting
 daily new cases of COVID-19 in
 the Government of New Brunswick
@@ -118,6 +116,13 @@ obj.parse()
 obj.save()
 ```
 
+By deault,
+the resulted file will be saved as 'dataNB.csv' in the working folder,
+and all related webpages will be stored in the subfolder "store".
+The files "chunks.txt" and "log.txt"
+will also be generated
+for screening possible errors.
+
 ## Procedures
 
 Here is a description of the procedures of the module.
@@ -206,7 +211,7 @@ a paragraph not containing letter "Z".
 
 
 ```Python
-reChunk1 = re.compile(r"""
+re.compile(r"""
     (?P<chunk>
     <p><b>[^<]*[Nn]ew\s[Cc]ases?</b></p>\n
     .*?Zone.*?)
@@ -240,7 +245,7 @@ to the line before
 a paragraph not containing letter "Z".
 
 ```Python
-reChunk2 = re.compile(r"""
+re.compile(r"""
     (?P<chunk>
     <p>[^<]*?Public\s(?:dog)?Heal?th.*?</p>\n # Covers the typo "Heath" in 2020.11.0615, 0607 and 0644
     .*?Zone.*?)
@@ -275,7 +280,7 @@ This regex captures
 the single line cotaining "Public Health".
 
 ```Python
-reChunk3 = re.compile(r"""
+re.compile(r"""
 (?P<chunk>
 <p>[^<]*?Public\sHealth[^<]*?report[^<]*? #
 [^<]*?Zone[^<]*?
@@ -293,11 +298,16 @@ related to an international travel-related case and who is self-isolating.</p>
 
 ### Combination of the three regex.
 Each webpage
-is tested by the three regex
-one by one.
+is tested by all listed regex one by one
+until suceed or exhausted.
+As many regex as needed can be added.
 
 ```Python
-reChunkList = [reChunk1, reChunk2, reChunk3]
+reChunkList = [
+    re.compile( ... ), # reChunk1
+    re.compile( ... ), # reChunk2
+    re.compile( ... ), # reChunk3
+]
 def getChunk(s:str):
     for r in reChunkList:
         if r.search(s):
@@ -338,11 +348,11 @@ read those three factors.
 reNumAge = re.compile(r""" # Get number of cases and the corresponding age
     (?P<num>\w+) 
     \s(?:individual|people)
-    .*?(?P<age>(?:\d9|90))
+    .*?(?P<age>(?:\d0|19))
 """, re.VERBOSE)
 
 def getNumAge(s: str):
-    s.lower()
+    s = s.lower()
     num, age = reNumAge.search(s).groups()
     return w2d[num], int(age)
 ```
@@ -369,11 +379,7 @@ for date in dateList:
     chunk = self.chunkData[date]['chunk']
     d = {}
     for s in chunk.split('\n'):
-        if self.reZone.search(s) and self.reNumAge.search(s):
-            num, age = self.getNumAge(s)
-            zone = self.getZone(s)
-            self.info[date][zone][age] += num
-        elif self.reZone.search(s):
+        if self.reZone.search(s):
             zone = self.getZone(s)
             d = self.info[date][zone]
         elif self.reNumAge.search(s) and d:
@@ -405,8 +411,16 @@ def save():
 
 ## Edge Cases
 
-A few of the documents were written in different formats than the others. For instance, the two files "news_release.2020.03.0155.html" and "news_release.2020.03.0157.html" have age groups 20-30, 30-40, etc. rather than 20-29, 30-39, etc. as ther other files.
+A small portion of the webpages were written
+in formats that are not captured but this script.
+For instance,
+in "news_release.2020.03.0164.html"
+the ages of indivisuals
+were not given.
 
-Another instance is "news_release.2020.03.0164.html", where the ages were not described, so the data cannot be stored in the table built for the other files.
-
-Such marginal cases are not too many, so they were left to be handeled manually.
+Fortunately,
+thanks to the coherent writing style
+of the Government of New Brunswick,
+those edge cases are not too many,
+and are within a reasonable amount
+to be handeled manually.

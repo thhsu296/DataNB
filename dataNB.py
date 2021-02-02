@@ -13,7 +13,7 @@ class dataNB():
         self.parent = r'https://www2.gnb.ca/content/gnb/en/corporate/promo/covid-19/' # Absolute URL
         self.folderName = folderName
         self.fileName = fileName
-        self.ageLevels = [19,29,39,49,59,69,79,89,90]
+        self.ageLevels = [0,20,30,40,50,60,70,80,90]
         self.numZones = 6
         self.w2d = Counter({
             'one':1, 'an':1, 'the': 1, 'two':2, 'three':3, 'four':4, 'five':5,
@@ -46,7 +46,7 @@ class dataNB():
         self.reNumAge = re.compile(r""" # Get number of cases and the corresponding age
             (?P<num>\w+) 
             \s(?:individual|people)
-            .*?(?P<age>(?:\d9|90))
+            .*?(?P<age>(?:\d0|19|9))
         """, re.VERBOSE)
 
         self.rePage = re.compile(r'news_release.*html') # Valid page name
@@ -92,6 +92,8 @@ class dataNB():
         s = s.lower()
         if self.reTotal.search(s):
             w = self.reTotal.search(s).groupdict()['total']
+            if w.isnumeric():
+                return int(w)
             return self.w2d[w] # This also covers "No case" and "Without a case"
         return 0
 
@@ -99,14 +101,18 @@ class dataNB():
         return self.reDescr.search(s).groupdict()['descr']
 
     def getNumAge(self, s: str):
-        s.lower()
+        s = s.lower()
         num, age = self.reNumAge.search(s).groups()
+        if num in ('9','19'): num = '0'
         return self.w2d[num], int(age)
 
     def getChunk(self, s:str):
+        lmax = 5000 # Max accepted length
         for r in self.reChunkList:
             if r.search(s):
-                return r.search(s).groupdict()['chunk']
+                w = r.search(s).groupdict()['chunk']
+                if len(w) > lmax: return ''
+                return w
         return ''
 
     def getDate(self, s:str):
@@ -157,68 +163,65 @@ class dataNB():
     def load(self):
         localstore = os.path.join(os.getcwd(), self.folderName)
         fList = sorted(filter(self.isPage, os.listdir(localstore)))
-        self.chunkData = defaultdict(dict)
-        for i,fname in enumerate(fList):
-            path = os.path.join(localstore,fname)
-            with open(path,'r') as f:
-                doc = f.read()
-            date = self.getDate(doc)
-            descr = self.getDescr(doc)
-            chunk = self.getChunk(doc)
-            total = self.getTotal(descr)
-            if len(chunk) > 5000 or not chunk:
-                chunk = chunk[:200] + '\n...\n' + chunk[-200:]
-                print('='*50)
-                print(i,fname,'\n')
-                print(chunk)
-            self.chunkData[date]['filename'] = fname
-            self.chunkData[date]['total'] = total
-            self.chunkData[date]['chunk'] = chunk
-        # with open('dataChunks.json','w') as f:
-        #     json.dump(dataChunks, f)
-        return None
+        with open('chunks.txt','w') as fw:
+            for fname in fList:
+                path = os.path.join(localstore,fname)
+                with open(path,'r') as f:
+                    doc = f.read()
+                date = self.getDate(doc)
+                descr = self.getDescr(doc)
+                chunk = self.getChunk(doc)
+                total = self.getTotal(descr)
+                fw.write('='*50 + '\n' + fname + '\n\n' + chunk + '\n')
+                if not chunk:
+                    print(f'Failed to slice {fname}\n')
+                self.chunkData[date]['filename'] = fname
+                self.chunkData[date]['total'] = total
+                self.chunkData[date]['chunk'] = chunk
+            return None
     
     def parse(self):
         self.load()
         dateList = sorted(self.chunkData.keys())
-        for date in dateList:
-            chunk = self.chunkData[date]['chunk']
-            cnt = num = 0
-            hasZone = False
-            for s in chunk.split('\n'):
-                if self.reZone.search(s) and self.reNumAge.search(s):
-                    num, age = self.getNumAge(s)
-                    zone = self.getZone(s)
-                    self.info[date][zone][age] += num
-                    cnt += num
-                    #print(zone,age,num, s+'\n')
-                elif self.reZone.search(s):
-                    zone = self.getZone(s)
-                    d = self.info[date][zone]
-                    hasZone = True
-                elif self.reNumAge.search(s) and hasZone:
-                    num, age = self.getNumAge(s)
-                    d[age] += num
-                    cnt += num
-                    #print(zone,age,num, s+'\n')
-            # fname = self.chunkData[date]['filename']
-            # total = self.chunkData[date]['total']
-            # if cnt != total:
-            #     print(f'Warning: Does not add up for {fname} ({date}). Total is {total}, but counted {cnt}.')
-            #     print('\n',chunk)
+        with open('log.txt','w') as flog:
+            for date in dateList:
+                chunk = self.chunkData[date]['chunk']
+                cnt = num = 0
+                hasZone = False
+                for s in chunk.split('\n'):
+                    if self.reZone.search(s):
+                        zone = self.getZone(s)
+                        d = self.info[date][zone]
+                        hasZone = True
+                    if self.reNumAge.search(s) and hasZone:
+                        num, age = self.getNumAge(s)
+                        d[age] += num
+                        cnt += num
+                        #print(zone,age,num, s+'\n')
+                fname = self.chunkData[date]['filename']
+                total = self.chunkData[date]['total']
+                if cnt != total:
+                    message = f'Warning: {fname[-17:]} ({date}). Total is {total}, but counted {cnt}'
+                    print(message)
+                    flog.write(message + '\n')
+                    self.chunkData[date]['off'] = 'v'
+                else:
+                    self.chunkData[date]['off'] = ''
 
-    def save(self, filename='dataNB.csv'):
+    def save(self):
         n = self.numZones
-        headerList = ['date'] + [f'Z{i}A{j}' for i in range(1,n+1) for j in self.ageLevels]
+        headerList = ['Date','Total','Off'] + [f'Z{i}.A{j:02d}' for i in range(1,n+1) for j in self.ageLevels]
         header = ', '.join(headerList)
         dList = sorted(self.info.keys(), reverse=True)
-        with open('dataNB.csv', 'w') as f:
-            f.write(header + '\n')
+        with open(self.fileName, 'w') as fw:
+            fw.write(header + '\n')
             for date in dList:
                 d = self.info[date]
-                row = [date] + [str(d[i][j]) for i in range(1,n+1) for j in self.ageLevels]
+                total = str(self.chunkData[date]['total'])
+                off = self.chunkData[date]['off']
+                row = [date, total, off] + [str(d[i][j]) for i in range(1,n+1) for j in self.ageLevels]
                 s = ', '.join(row)
-                f.write(s + '\n')
+                fw.write(s + '\n')
 
 if __name__ == '__main__':
     obj = dataNB(folderName='store', fileName='DataNB.csv')
