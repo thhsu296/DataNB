@@ -1,5 +1,6 @@
-# Fetching New Brunswidk COVID-19 Data
-Fetching data of the COVID-19 cases in New Brunswick, Canada
+# Fetching New Brunswick COVID-19 Data
+Counting the number of COVID-19 cases
+in New Brunswick, Canada, by zones and age levels
 
 ## The Task
 
