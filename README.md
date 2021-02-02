@@ -117,8 +117,9 @@ obj.save()
 ```
 
 By deault,
-the resulted file will be saved as 'dataNB.csv' in the working folder,
-and all related webpages will be stored in the subfolder "store".
+the resulted table will be saved as
+"dataNB.csv" (with 0's) and "dataNB_drop.csv" (dropped 0's) in the working folder,
+and all related webpages will be stored in the subfolder "./store".
 The files "chunks.txt" and "log.txt"
 will also be generated
 for screening possible errors.
@@ -247,11 +248,14 @@ a paragraph not containing letter "Z".
 ```Python
 re.compile(r"""
     (?P<chunk>
-    <p>[^<]*?Public\s(?:dog)?Heal?th.*?</p>\n # Covers the typo "Heath" in 2020.11.0615, 0607 and 0644
+    <p>[^<]*?Public\sHeal?th.*?</p>\n
     .*?Zone.*?)
     (?=<p>[^Z]*?</p>)
 """, re.VERBOSE | re.DOTALL),
 ```
+
+Note that the term 'Heal?th' matches both "Heath" and "Health".
+This covers typo "Heath" that appeared in some of the reports.
 
 The following paragraph
 matches this pattern string.

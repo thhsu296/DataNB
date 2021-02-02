@@ -392,19 +392,8 @@ news_release.2020.05.0301.html
 ==================================================
 news_release.2020.05.0307.html
 
-<p>Premier Blaine Higgs reminded the public of their responsibility to follow Public Health directives as the province reopens.</p>
-<p>“By pushing against restrictions, you are endangering not just yourself, but your family, friends and fellow New Brunswickers,” said Higgs. “Now is not the time for New Brunswickers to take unnecessary risks, which could undo all the hard work it took to get us to this point.”</p>
-<p>Public Health officials are working with partners to establish mobile testing in the affected communities in Zone 5. Health-care workers in this particular zone should refrain from working in more than one health-care facility.</p>
-<p>The following rules apply to Zone 5 only:</p>
-<ul>
-<li>A two-household bubble is permitted. Your household can join up with one other household, if both households mutually agree. You must not have close contact with anyone else. You cannot join up with more than one household or bubble.</li>
-</ul>
-<ul>
-<li>Non-regulated health professionals and businesses such as acupuncturists and naturopaths cannot operate at this time.</li>
-</ul>
-<ul>
-<li>Personal services businesses such as barbers, hair stylists, spas, estheticians, manicurists, pedicurists, and tattoo artists cannot operate at this time.</li>
-</ul>
+<p>FREDERICTON (GNB) – Zone 5 (Campbellton region) is transitioning back to Orange level under the province’s COVID-19 recovery plan immediately.</p>
+<p>Three recent confirmed cases of COVID-19 are now established as travel-related cases. The newest case is an individual between 50 and 59 in Zone 5. The previous two confirmed cases include an individual over 90 and another individual under 19.</p>
 
 ==================================================
 news_release.2020.05.0311.html
@@ -2457,9 +2446,56 @@ news_release.2021.01.0030.html
 ==================================================
 news_release.2021.01.0032.html
 
-<p>“When students are at school, they are in a supervised environment with strict health and safety protocols in place,” said Education and Early Childhood Development Minister Dominic Cardy. “Their social needs can be met, while maintaining physical distancing, using masks, and being encouraged to maintain proper hygiene. That is why, with the support and recommendations of Public Health, we have made changes to our Return to School plan ensuring schools can stay open during the red phase.”</p>
-<p><b>Other schools impacted</b></p>
-<p>Meanwhile positive cases have been confirmed in schools in Zones 1 and 2.</p>
+<p>FREDERICTON (GNB) – Zone 4 is moving to <a href="https://www2.gnb.ca/content/gnb/en/corporate/promo/covid-19/recovery.html#red" target="_blank">Red level at midnight</a> although schools in that region will remain open. Public Health reported 36 new cases of COVID-19 today.</p>
+<p>“We have seen what has happened in other jurisdictions when the increase in active cases is not dealt with quickly and decisively,” said Premier Blaine Higgs. “We don’t want that to happen here, but if we are going to avoid it we must do our part.”</p>
+<p>Higgs reminded residents that the other six Health Zones in the province remain at the <a href="https://www2.gnb.ca/content/gnb/en/corporate/promo/covid-19/recovery.html#orange" target="_blank">Orange level</a> under the province’s COVID-19 recovery plan.</p>
+<p>The five cases in Zone 1 (Moncton region) are as follows:</p>
+<ul>
+<li>two people 19 and under;</li>
+</ul>
+<ul>
+<li>an individual 20-29;</li>
+</ul>
+<ul>
+<li>an individual 40-49; and</li>
+</ul>
+<ul>
+<li>an individual 70-79.</li>
+</ul>
+<p>The four cases in Zone 2 (Saint John region) are as follows:</p>
+<ul>
+<li>an individual 19 and under;</li>
+</ul>
+<ul>
+<li>an individual 20-29; and</li>
+</ul>
+<ul>
+<li>two people 40-49.</li>
+</ul>
+<p>The two cases in Zone 3 (Fredericton region) are as follows:</p>
+<ul>
+<li>two people 20-29.</li>
+</ul>
+<p>The 24 cases in Zone 4 (Edmundston region) are as follows:</p>
+<ul>
+<li>three people 19 and under;</li>
+</ul>
+<ul>
+<li>three people 30-39;</li>
+</ul>
+<ul>
+<li>four people 40-49;</li>
+</ul>
+<ul>
+<li>ten people 50-59; and</li>
+</ul>
+<ul>
+<li>four people 60-69.</li>
+</ul>
+<p>The one case in Zone 6 (Bathurst region) is as follows:</p>
+<ul>
+<li>an individual 20-29.</li>
+</ul>
 
 ==================================================
 news_release.2021.01.0034.html

@@ -58,13 +58,19 @@ class dataNB():
             .*?Zone.*?)
             (?=<p>[^Z]*?</p>)
             """, re.VERBOSE | re.DOTALL),
-            re.compile(r""" # 1. Preceded by a paragraph cotaining "Public Health"
+            re.compile(r""" # 1. Preceded by a paragraph cotaining "FREDERICTON (GNB)"
             (?P<chunk>
-            <p>[^<]*?Public\s(?:dog)?Heal?th.*?</p>\n # Covers the typo "Heath" in 2020.11.0615, 0607 and 0644
+            <p>FREDERICTON\s\(GNB\).*?</p>\n
             .*?Zone.*?)
             (?=<p>[^Z]*?</p>)
             """, re.VERBOSE | re.DOTALL),
-            re.compile(r""" # 2. Reported in a single line cotaining "Public Health"
+            re.compile(r""" # 2. Preceded by a paragraph cotaining "Public Health"
+            (?P<chunk>
+            <p>[^<]*?Public\sHeal?th.*?</p>\n # Covers the typo "Heath" in 2020.11.0615, 0607 and 0644
+            .*?Zone.*?)
+            (?=<p>[^Z]*?</p>)
+            """, re.VERBOSE | re.DOTALL),
+            re.compile(r""" # 3. Reported in a single line cotaining "Public Health"
             (?P<chunk>
             <p>[^<]*?Public\sHealth[^<]*?report[^<]*? #
             [^<]*?Zone[^<]*?
@@ -103,7 +109,8 @@ class dataNB():
     def getNumAge(self, s: str):
         s = s.lower()
         num, age = self.reNumAge.search(s).groups()
-        if num in ('9','19'): num = '0'
+        if age in ('9','19','10'):
+            age = '0'
         return self.w2d[num], int(age)
 
     def getChunk(self, s:str):
@@ -131,10 +138,9 @@ class dataNB():
     def download(self, folderName='store'):
         url0 = self.getAbs('news.html')
         suffix = r'?mainContent_par_newslist_update_start={k}'
-        localstore = os.path.join(os.getcwd(), folderName)
-        if not os.path.exists(localstore):
-            os.mkdir(localstore)
-        fList = os.listdir(localstore)
+        if not os.path.exists( folderName ):
+            os.mkdir( folderName )
+        fList = os.listdir( folderName )
         for k in range(0,400,50):
             urlNews = url0 + suffix.format(k=k) if k > 0 else url0
             news = requests.get(urlNews).content.decode('utf-8')
@@ -152,7 +158,7 @@ class dataNB():
             for link in uList:
                 url = self.getAbs(link)
                 fname = self.getName(link)
-                path = os.path.join(localstore, fname)
+                path = os.path.join( folderName, fname )
                 with open(path,'w') as fw:
                     doc = requests.get(url).content.decode('utf-8')
                     fw.write(doc)
@@ -201,7 +207,7 @@ class dataNB():
                 fname = self.chunkData[date]['filename']
                 total = self.chunkData[date]['total']
                 if cnt != total:
-                    message = f'Warning: {fname[-17:]} ({date}). Total is {total}, but counted {cnt}'
+                    message = f'Warning: {fname} ({date}). Total is {total}, but counted {cnt}'
                     print(message)
                     flog.write(message + '\n')
                     self.chunkData[date]['off'] = 'v'
@@ -212,16 +218,23 @@ class dataNB():
         n = self.numZones
         headerList = ['Date','Total','Off'] + [f'Z{i}.A{j:02d}' for i in range(1,n+1) for j in self.ageLevels]
         header = ', '.join(headerList)
-        dList = sorted(self.info.keys(), reverse=True)
-        with open(self.fileName, 'w') as fw:
-            fw.write(header + '\n')
+        dList = sorted(self.info.keys())
+        fname = self.fileName
+        if '.csv' in fname:
+            fname = fname.replace('.csv','')
+        with open(fname+'.csv', 'w') as f, open(fname + '_drop.csv', 'w') as fDrop:
+            f.write(header + '\n')
+            fDrop.write(header + '\n')
             for date in dList:
                 d = self.info[date]
                 total = str(self.chunkData[date]['total'])
                 off = self.chunkData[date]['off']
                 row = [date, total, off] + [str(d[i][j]) for i in range(1,n+1) for j in self.ageLevels]
                 s = ', '.join(row)
-                fw.write(s + '\n')
+                f.write(s + '\n')
+                rowDrop = [date, total, off] + [str(d[i][j]) if d[i][j] else '' for i in range(1,n+1) for j in self.ageLevels]
+                sDrop = ', '.join(rowDrop)
+                fDrop.write(sDrop + '\n')
 
 if __name__ == '__main__':
     obj = dataNB(folderName='store', fileName='DataNB.csv')
