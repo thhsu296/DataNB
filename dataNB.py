@@ -203,7 +203,7 @@ class dataNB():
         return patchData
 
     def parse(self, folderName='store', patchName='patch.csv'):
-        self.load()
+        self.load( folderName )
         dateList = sorted(self.chunkData.keys())
         patchData = self.patch()
         with open('log.txt','w') as flog:
