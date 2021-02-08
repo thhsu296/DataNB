@@ -236,15 +236,13 @@ class dataNB():
                 else:
                     self.chunkData[date]['off'] = ''
 
-    def save(self, fileName='DataNB.csv'):
+    def save(self, fileName='dataNB.csv'):
         n = self.numZones
         headerList = ['Date','Total','Off'] + [f'Z{i}.A{j:02d}' for i in range(1,n+1) for j in self.ageLevels]
         header = ', '.join(headerList)
         dList = sorted(self.info.keys())
-        fname = fileName
-        if '.csv' in fname:
-            fname = fname.replace('.csv','')
-        with open(fname + '_0.csv', 'w') as f, open(fname + '.csv', 'w') as fDrop:
+        fileName0 = fileName.replace('.csv', '_0.csv')
+        with open(fileName0, 'w') as f, open(fileName, 'w') as fDrop:
             f.write(header + '\n')
             fDrop.write(header + '\n')
             for date in dList:
@@ -260,6 +258,6 @@ class dataNB():
 
 if __name__ == '__main__':
     obj = dataNB()
-    obj.download( folderName='store' )
+    # obj.download( folderName='store' )
     obj.parse( folderName='store', patchName='patch.csv' )
-    obj.save( fileName='DataNB.csv' )
+    obj.save( fileName='dataNB.csv' )
