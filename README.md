@@ -128,6 +128,12 @@ for screening possible errors.
 The options patch file in ```parse()``` allows manual adjustments
 without changing the raw data.
 
+## One-Click Download
+
+Use [this link](https://colab.research.google.com/github/thhsu296/DataNB/blob/main/one_click.ipynb)
+to run the script in Google Colaboratory
+for generating and downloading the .csv files.
+
 ## Procedures
 
 Here is a description of the procedures of the module.
