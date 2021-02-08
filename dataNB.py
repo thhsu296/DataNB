@@ -205,7 +205,7 @@ class dataNB():
     def parse(self, folderName='store', patchName='patch.csv'):
         self.load( folderName )
         dateList = sorted(self.chunkData.keys())
-        patchData = self.patch()
+        patchData = self.patch( patchName )
         with open('log.txt','w') as flog:
             for date in dateList:
                 chunk = self.chunkData[date]['chunk']
