@@ -8,13 +8,11 @@ import pandas as pd
 import json
 
 class dataNB():
-    def __init__(self, folderName='store', fileName='DataNB.csv'):
+    def __init__(self):
         # Stored information
         self.parent = r'https://www2.gnb.ca/content/gnb/en/corporate/promo/covid-19/' # Absolute URL
-        self.folderName = folderName
-        self.fileName = fileName
         self.ageLevels = [0,20,30,40,50,60,70,80,90]
-        self.numZones = 6
+        self.numZones = 7
         self.w2d = Counter({
             'one':1, 'an':1, 'the': 1, 'two':2, 'three':3, 'four':4, 'five':5,
             'six':6, 'seven':7, 'eight':8, 'nine':9,
@@ -166,8 +164,8 @@ class dataNB():
             if not uList: break
         return None
     
-    def load(self):
-        localstore = os.path.join(os.getcwd(), self.folderName)
+    def load(self, folderName='store'):
+        localstore = os.path.join(os.getcwd(), folderName)
         fList = sorted(filter(self.isPage, os.listdir(localstore)))
         with open('chunks.txt','w') as fw:
             for fname in fList:
@@ -185,10 +183,30 @@ class dataNB():
                 self.chunkData[date]['total'] = total
                 self.chunkData[date]['chunk'] = chunk
             return None
-    
-    def parse(self):
+
+    def patch(self, patchName='patch.csv'):
+        if not os.path.exists( patchName ):
+            return dict()
+        with open(patchName,'r') as f:
+            doc = f.read()
+        docRows = doc.split('\n')
+        header = docRows[0].split(',')[1:]
+        patchData = defaultdict(lambda: defaultdict(dict))
+        for row in docRows[1:]:
+            row = row.split(',')
+            date, nums = row[0][2:], row[1:]
+            for s, n in zip(header, nums):
+                s = s.replace(' ','')
+                n = n.replace(' ','')
+                if s not in ('Total','Off') and n:
+                    z, a = int(s[1]), int(s[-2:])
+                    patchData[date][z][a] = int(n)
+        return patchData
+
+    def parse(self, folderName='store', patchName='patch.csv'):
         self.load()
         dateList = sorted(self.chunkData.keys())
+        patchData = self.patch()
         with open('log.txt','w') as flog:
             for date in dateList:
                 chunk = self.chunkData[date]['chunk']
@@ -204,6 +222,11 @@ class dataNB():
                         d[age] += num
                         cnt += num
                         #print(zone,age,num, s+'\n')
+                if date in patchData:
+                    for z in range(1, self.numZones + 1):
+                        cnt -= sum( self.info[date][z].values() or [0] )
+                        cnt += sum( patchData[date][z].values() or [0] )
+                        self.info[date][z].update( patchData[date][z] )
                 fname = self.chunkData[date]['filename']
                 total = self.chunkData[date]['total']
                 if cnt != total:
@@ -214,30 +237,30 @@ class dataNB():
                 else:
                     self.chunkData[date]['off'] = ''
 
-    def save(self):
+    def save(self, fileName='DataNB.csv'):
         n = self.numZones
         headerList = ['Date','Total','Off'] + [f'Z{i}.A{j:02d}' for i in range(1,n+1) for j in self.ageLevels]
         header = ', '.join(headerList)
         dList = sorted(self.info.keys())
-        fname = self.fileName
+        fname = fileName
         if '.csv' in fname:
             fname = fname.replace('.csv','')
-        with open(fname+'.csv', 'w') as f, open(fname + '_drop.csv', 'w') as fDrop:
+        with open(fname + '_0.csv', 'w') as f, open(fname + '.csv', 'w') as fDrop:
             f.write(header + '\n')
             fDrop.write(header + '\n')
             for date in dList:
                 d = self.info[date]
                 total = str(self.chunkData[date]['total'])
                 off = self.chunkData[date]['off']
-                row = [date, total, off] + [str(d[i][j]) for i in range(1,n+1) for j in self.ageLevels]
+                row = ['20'+date, total, off] + [str(d[i][j]) for i in range(1,n+1) for j in self.ageLevels]
                 s = ', '.join(row)
                 f.write(s + '\n')
-                rowDrop = [date, total, off] + [str(d[i][j]) if d[i][j] else '' for i in range(1,n+1) for j in self.ageLevels]
+                rowDrop = ['20'+date, total, off] + [str(d[i][j]) if d[i][j] else '' for i in range(1,n+1) for j in self.ageLevels]
                 sDrop = ', '.join(rowDrop)
                 fDrop.write(sDrop + '\n')
 
 if __name__ == '__main__':
-    obj = dataNB(folderName='store', fileName='DataNB.csv')
-    obj.download()
-    obj.parse()
-    obj.save()
+    obj = dataNB()
+    obj.download( folderName='store' )
+    obj.parse( folderName='store', patchName='patch.csv' )
+    obj.save( fileName='DataNB.csv' )

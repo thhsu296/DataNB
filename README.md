@@ -112,18 +112,21 @@ type the following codes.
 ```python
 import dataNB
 obj = dataNB(foldername='store',filename='dataNB.csv')
-obj.download()
-obj.parse()
-obj.save()
+obj.download( folderName='store' )
+obj.parse( folderName='store', patchName='patch.csv' )
+obj.save( fileName='DataNB.csv' )
 ```
 
 By deault,
 the resulted table will be saved as
-"dataNB.csv" (with 0's) and "dataNB_drop.csv" (dropped 0's) in the working folder,
+"dataNB.csv" (dropped 0's) and "dataNB_0.csv" (kept 0's) in the working folder,
 and all related webpages will be stored in the subfolder "./store".
 The files "chunks.txt" and "log.txt"
 will also be generated
 for screening possible errors.
+
+The options patch file in ```parse()``` allows manual adjustments
+without changing the raw data.
 
 ## Procedures
 
@@ -419,7 +422,7 @@ def save():
 A small portion of the webpages were written
 in formats that are not captured but this script.
 For instance,
-in "news_release.2020.03.0164.html"
+in "news_release.2020.03.0164.html" (2020-03-29)
 the ages of indivisuals
 were not given.
 

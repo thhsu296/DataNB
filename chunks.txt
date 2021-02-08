@@ -3084,3 +3084,192 @@ news_release.2021.02.0073.html
 <li>an individual 70-79.</li>
 </ul>
 
+==================================================
+news_release.2021.02.0076.html
+
+<p><b>25 new cases</b></p>
+<p>Public Health reported 25 new cases of COVID-19 today.</p>
+<p>The one case in Zone 1 (Moncton region) is as follows:</p>
+<ul>
+<li>an individual 19 and under.</li>
+</ul>
+<p>The 24 cases in Zone 4 (Edmundston region) are as follows:</p>
+<ul>
+<li>two people 20-29;</li>
+</ul>
+<ul>
+<li>three people 30-39;</li>
+</ul>
+<ul>
+<li>four people 40-49;</li>
+</ul>
+<ul>
+<li>four people 50-59;</li>
+</ul>
+<ul>
+<li>three people 60-69;</li>
+</ul>
+<ul>
+<li>two people 70-79;</li>
+</ul>
+<ul>
+<li>five people 80-89; and</li>
+</ul>
+<ul>
+<li>an individual 90 and over.</li>
+</ul>
+
+==================================================
+news_release.2021.02.0077.html
+
+<p>FREDERICTON (GNB) – Public Health reported 14 new cases of COVID-19 today.</p>
+<p>The four cases in Zone 1 (Moncton region) are as follows:</p>
+<ul>
+<li>an individual 19 and under;</li>
+<li>an individual 20-29;</li>
+<li>an individual 40-49; and</li>
+<li>an individual 60-69.</li>
+</ul>
+<p>The one case in Zone 3 (Fredericton region) is as follows:</p>
+<ul>
+<li>an individual 50-59.</li>
+</ul>
+<p>The nine cases in Zone 4 (Edmundston region) are as follows:</p>
+<ul>
+<li>an individual 30-39;</li>
+<li>an individual 40-49;</li>
+<li>three people 50-59;</li>
+<li>two people 60-69; and</li>
+<li>two people 70-79.</li>
+</ul>
+
+==================================================
+news_release.2021.02.0079.html
+
+<p>FREDERICTON (GNB) – Public Health reported 16 new cases of COVID-19 today.</p>
+<p>The five cases in Zone 1 (Moncton region) are as follows:</p>
+<ul>
+<li>two people 20-29;</li>
+</ul>
+<ul>
+<li>an individual 30-39;</li>
+</ul>
+<ul>
+<li>an individual 60-69; and</li>
+</ul>
+<ul>
+<li>an individual 90 and over.</li>
+</ul>
+<p>The one case in Zone 3 (Fredericton region) is as follows:</p>
+<ul>
+<li>an individual 50-59.</li>
+</ul>
+<p>The nine cases in Zone 4 (Edmundston region) are as follows:</p>
+<ul>
+<li>two people 19 and under;</li>
+</ul>
+<ul>
+<li>an individual 20-29;</li>
+</ul>
+<ul>
+<li>an individual 30-39;</li>
+</ul>
+<ul>
+<li>two people 50-59;</li>
+</ul>
+<ul>
+<li>an individual 60-69; and</li>
+</ul>
+<ul>
+<li>two people 70-79.</li>
+</ul>
+<p>The one case in Zone 6 (Bathurst region) is as follows:</p>
+<ul>
+<li>an individual 50-59.</li>
+</ul>
+
+==================================================
+news_release.2021.02.0080.html
+
+<p>FREDERICTON (GNB) – Public Health reported seven new cases of COVID-19 today.</p>
+<p>The one case in Zone 1 (Moncton region) is as follows:</p>
+<ul>
+<li>an individual 80-89.</li>
+</ul>
+<p>The one case in Zone 3 (Fredericton region) is as follows:</p>
+<ul>
+<li>an individual 50-59.</li>
+</ul>
+<p>The five cases in Zone 4 (Edmundston region) are as follows:</p>
+<ul>
+<li>an individual 20-29;</li>
+</ul>
+<ul>
+<li>an individual 30-39; and</li>
+</ul>
+<ul>
+<li>three people 70-79.</li>
+</ul>
+
+==================================================
+news_release.2021.02.0081.html
+
+<p><b>12 new cases</b></p>
+<p>Public Health reported 12 new cases of COVID-19 today.</p>
+<p>The one case in Zone 3 (Fredericton region) is as follows:</p>
+<ul>
+<li>an individual 50-59.</li>
+</ul>
+<p>The 10 cases in Zone 4 (Edmundston region) are as follows:</p>
+<ul>
+<li>an individual 19 and under;</li>
+</ul>
+<ul>
+<li>an individual 20-29;</li>
+</ul>
+<ul>
+<li>two people 30-39;</li>
+</ul>
+<ul>
+<li>two people 40-49;</li>
+</ul>
+<ul>
+<li>an individual 50-59;</li>
+</ul>
+<ul>
+<li>an individual 70-79; and;</li>
+</ul>
+<ul>
+<li>two people 90 and over.</li>
+</ul>
+<p>The one case in Zone 6 (Bathurst region) is as follows:</p>
+<ul>
+<li>an individual 50-59.</li>
+</ul>
+
+==================================================
+news_release.2021.02.0083.html
+
+<p>FREDERICTON (GNB) – Public Health reported seven new cases of COVID-19 today.</p>
+<p>The one case in Zone 1 (Moncton region) is as follows:</p>
+<ul>
+<li>an individual 19 and under.</li>
+</ul>
+<p>The one case in Zone 3 (Fredericton region) is as follows:</p>
+<ul>
+<li>an individual 50-59.</li>
+</ul>
+<p>The five cases in Zone 4 (Edmundston region) are as follows:</p>
+<ul>
+<li>two people 20-29;</li>
+</ul>
+<ul>
+<li>an individual 40-49;</li>
+</ul>
+<ul>
+<li>an individual 60-69; and</li>
+</ul>
+<ul>
+<li>an individual 80-89.</li>
+</ul>
+
