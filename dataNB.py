@@ -165,7 +165,7 @@ class dataNB():
         return None
     
     def load(self, folderName='store'):
-        fList = sorted(filter(self.isPage, folderName))
+        fList = sorted(filter(self.isPage, os.listdir(folderName)))
         with open('chunks.txt','w') as fw:
             for fname in fList:
                 path = os.path.join(folderName,fname)
