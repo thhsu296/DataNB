@@ -165,11 +165,10 @@ class dataNB():
         return None
     
     def load(self, folderName='store'):
-        localstore = os.path.join(os.getcwd(), folderName)
-        fList = sorted(filter(self.isPage, os.listdir(localstore)))
+        fList = sorted(filter(self.isPage, folderName))
         with open('chunks.txt','w') as fw:
             for fname in fList:
-                path = os.path.join(localstore,fname)
+                path = os.path.join(folderName,fname)
                 with open(path,'r') as f:
                     doc = f.read()
                 date = self.getDate(doc)

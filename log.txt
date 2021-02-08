@@ -1,3 +1,0 @@
-Warning: news_release.2020.03.0164.html (20-03-29). Total is 15, but counted 0
-Warning: news_release.2020.08.0425.html (20-08-05). Total is 4, but counted 0
-Warning: news_release.2020.09.0476.html (20-09-10). Total is 1, but counted 0
