@@ -3284,3 +3284,330 @@ news_release.2021.02.0086.html
 <li>an individual 40-49.</li>
 </ul>
 
+==================================================
+news_release.2021.02.0091.html
+
+<p><b>15 new cases</b></p>
+<p>Public Health reported 15 new cases of COVID-19 today.</p>
+<p>The two cases in Zone 1 (Moncton region) are as follows:</p>
+<ul>
+<li>an individual 20-29; and</li>
+</ul>
+<ul>
+<li>an individual 30-39.</li>
+</ul>
+<p>The three cases in Zone 2 (Saint John region) are as follows:</p>
+<ul>
+<li>an individual 19 and under;</li>
+</ul>
+<ul>
+<li>an individual 20-29; and</li>
+</ul>
+<ul>
+<li>an individual 70-79.</li>
+</ul>
+<p>The 10 cases in Zone 4 (Edmundston region) are as follows:</p>
+<ul>
+<li>an individual 19 and under;</li>
+</ul>
+<ul>
+<li>an individual 40-49;</li>
+</ul>
+<ul>
+<li>four people 60-69;</li>
+</ul>
+<ul>
+<li>two people 70-79; and</li>
+</ul>
+<ul>
+<li>two people 80-89.</li>
+</ul>
+<p>Six of these 10 cases in Zone 4 are related to the outbreak at Villa des Jardins, an adult residential facility in Edmundston.</p>
+<p>“It is disappointing to see cases in the double digits today in Zone 4, but it is not unexpected as the outbreaks at the two adult residential facilities remain a concern,” said Russell. “We must all remain vigilant, especially with the arrival of new variants of the COVID-19 virus which can be transmitted more easily and spread more quickly.”</p>
+
+==================================================
+news_release.2021.02.0093.html
+
+<p>FREDERICTON (GNB) –Public Health reported 14 new cases today.</p>
+<p>The one case in Zone 2 (Saint John region) is as follows:</p>
+<ul>
+<li>an individual 80-89.</li>
+</ul>
+<p>The one case in Zone 3 (Fredericton region) is as follows:</p>
+<ul>
+<li>an individual 50-59.</li>
+</ul>
+<p>The 12 cases in Zone 4 (Edmundston region) are as follows:</p>
+<ul>
+<li>an individual 19 and under;</li>
+</ul>
+<ul>
+<li>two people 20-29;</li>
+</ul>
+<ul>
+<li>an individual 30-39;</li>
+</ul>
+<ul>
+<li>an individual 40-49;</li>
+</ul>
+<ul>
+<li>two people 50-59;</li>
+</ul>
+<ul>
+<li>an individual 60-69;</li>
+</ul>
+<ul>
+<li>an individual 70-79;</li>
+</ul>
+<ul>
+<li>two people 80-89; and</li>
+</ul>
+<ul>
+<li>an individual 90 and over.</li>
+</ul>
+
+==================================================
+news_release.2021.02.0097.html
+
+<p><b>Two new cases</b></p>
+<p>Public Health reported two new cases of COVID-19 today.</p>
+<p>The one case in Zone 1 (Moncton region) is as follows:</p>
+<ul>
+<li>an individual 20-29.</li>
+</ul>
+<p>The one case in Zone 4 (Edmundston region) is as follows:</p>
+<ul>
+<li>an individual 19 and under.</li>
+</ul>
+
+==================================================
+news_release.2021.02.0103.html
+
+<p>&nbsp;FREDERICTON (GNB) – Public Health reported five new cases of COVID-19 today.</p>
+<p>The one case in Zone 2 (Saint John region) is as follows:</p>
+<ul>
+<li>an individual 50-59.</li>
+</ul>
+<p>The three cases in Zone 4 (Edmundston region) are as follows:</p>
+<ul>
+<li>an individual 19 and under;</li>
+<li>an individual 40-49; and</li>
+<li>an individual 80-89.</li>
+</ul>
+<p>The one case in Zone 6 (Bathurst region) is as follows:</p>
+<ul>
+<li>an individual 20-29.</li>
+</ul>
+
+==================================================
+news_release.2021.02.0104.html
+
+<p>FREDERICTON (GNB) – Public Health reported 16 new cases of COVID-19 today.</p>
+<p>The one case in Zone 1 (Moncton region) is as follows:</p>
+<ul>
+<li>an individual 30-39.</li>
+</ul>
+<p>The 15 cases in Zone 4 (Edmundston region) are as follows:</p>
+<ul>
+<li>two people 19 and under;</li>
+<li>an individual 20-29;</li>
+<li>two people 30-39;</li>
+<li>two people 40-49;</li>
+<li>three people 60- 69;</li>
+<li>four people 80-89; and</li>
+<li>an individual 90+.</li>
+</ul>
+
+==================================================
+news_release.2021.02.0105.html
+
+<p>FREDERICTON (GNB) – Public Health reported two new cases of COVID-19 today.</p>
+<p>The two cases in Zone 4 (Edmundston region) are as follows:</p>
+<ul>
+<li>an individual 20-29; and</li>
+</ul>
+<ul>
+<li>an individual 40-49.</li>
+</ul>
+
+==================================================
+news_release.2021.02.0106.html
+
+<p><b>One new case</b></p>
+<p>Public Health reported one case of COVID-19 today</p>
+<p>The case is an individual 50-59 in Zone 4 (Edmundston region).</p>
+
+==================================================
+news_release.2021.02.0111.html
+
+<p><b>Three new cases</b></p>
+<p>Public Health reported three new cases of COVID-19 today.</p>
+<p>The one case in Zone 1 (Moncton region) is as follows:</p>
+<ul>
+<li>an individual 50-59.</li>
+</ul>
+<p>The two cases in Zone 4 (Edmundston region) are as follows:</p>
+<ul>
+<li>two people 50-59.</li>
+</ul>
+
+==================================================
+news_release.2021.02.0114.html
+
+<p>FREDERICTON (GNB) – Public Health reported three new cases of COVID-19 today.</p>
+<p>The one case in Zone 2 (Saint John region) is as follows:</p>
+<ul>
+<li>an individual 40-49.</li>
+</ul>
+<p>The two cases in Zone 4 (Edmundston region) are as follows:</p>
+<ul>
+<li>an individual 60-69; and</li>
+</ul>
+<ul>
+<li>an individual 80-89.</li>
+</ul>
+
+==================================================
+news_release.2021.02.0117.html
+
+<p><b>Four new cases</b></p>
+<p>Public Health reported four new cases of COVID-19 today.</p>
+<p>The four cases in Zone 4 (Edmundston region) are as follows:</p>
+<ul>
+<li>an individual 19 and under;</li>
+</ul>
+<ul>
+<li>two people 60-69; and</li>
+</ul>
+<ul>
+<li>an individual 80-89.</li>
+</ul>
+
+==================================================
+news_release.2021.02.0123.html
+
+<p>FREDERICTON (GNB) – Public Health reported six new cases of COVID-19 today.</p>
+<p>The five cases in Zone 4 (Edmundston region) are as follows:</p>
+<ul>
+<li>two people 19 and under;</li>
+</ul>
+<ul>
+<li>an individual 20-29; and</li>
+</ul>
+<ul>
+<li>two people 40-49.</li>
+</ul>
+<p>The one case in Zone 7 (Miramichi region) is as follows:</p>
+<ul>
+<li>an individual 40-49.</li>
+</ul>
+
+==================================================
+news_release.2021.02.0124.html
+
+<p>FREDERICTON (GNB) – Public Health reported three new cases of COVID-19 today.</p>
+<p>The three cases in Zone 4 (Edmundston region) are as follows:</p>
+<ul>
+<li>an individual 19 and under;</li>
+<li>an individual 80-89; and</li>
+<li>an individual 90 and over.</li>
+</ul>
+
+==================================================
+news_release.2021.02.0125.html
+
+<p><b>Four new cases</b></p>
+<p>The one case in Zone 1 (Moncton region) is as follows:</p>
+<ul>
+<li>an individual 20-29, which is travel related.</li>
+</ul>
+<p>The three cases in Zone 4 (Edmundston region) are as follows:</p>
+<ul>
+<li>two people 19 and under; and</li>
+<li>an individual 30-39.</li>
+</ul>
+
+==================================================
+news_release.2021.02.0128.html
+
+<p><b>One new case</b></p>
+<p>Public Health is reporting one new case today.</p>
+<p>The case is an individual 40-49 in Zone 4 (Edmundston region) who is a close contact of a known case and is self-isolating.</p>
+
+==================================================
+news_release.2021.02.0141.html
+
+<p>FREDERICTON (GNB) – Public Health reported two new cases of COVID-19 today.</p>
+<p>The case in Zone 1 (Moncton region) is an individual 50-59. The case is under investigation and is self-isolating.</p>
+<p>The case in Zone 4 (Edmundston region) is an individual 70-79. The case is a staff member at Manoir Belle Vue and is self-isolating.</p>
+
+==================================================
+news_release.2021.02.0144.html
+
+<p>FREDERICTON (GNB) – Public Health reported one new case of COVID-19 today.</p>
+<p>The case in Zone 4 (Edmundston region) is an individual 30-39. The case is a close contact of a confirmed case and is self-isolating.</p>
+
+==================================================
+news_release.2021.02.0148.html
+
+<p><b>One new case</b></p>
+<p>Public Health reported one new case of COVID-19 today.</p>
+<p>The case in Zone 1 (Moncton region) is an individual 20-29. The case is travel related and is self-isolating.</p>
+
+==================================================
+news_release.2021.02.0149.html
+
+<p>FREDERICTON (GNB) – Public Health reported two new cases of COVID-19 today.</p>
+<p>The two cases in Zone 4 (Edmundston region) are as follows:</p>
+<ul>
+<li>Two people 70 – 79.</li>
+</ul>
+
+==================================================
+news_release.2021.03.0153.html
+
+<p>FREDERICTON (GNB) – Public Health reported one new case of COVID-19 today.</p>
+<p>The case is an individual 30-39 in Zone 7 (Miramichi region). The person is self-isolating, and the case is under investigation.</p>
+
+==================================================
+news_release.2021.03.0156.html
+
+<p><b>Four new cases</b></p>
+<p>Public Health reported four new cases of COVID-19 today. The four cases in Zone 7 (Miramichi region) are as follows:</p>
+<ul>
+<li>an individual 20-29;</li>
+</ul>
+<ul>
+<li>two people 50-59; and</li>
+</ul>
+<ul>
+<li>an individual 60-69.</li>
+</ul>
+
+==================================================
+news_release.2021.03.0161.html
+
+<p>FREDERICTON (GNB) – Public Health reported three new cases of COVID-19 today.</p>
+<p>The two cases in Zone 3 (Fredericton region) are:</p>
+<ul>
+<li>two people 20-29. Both cases are travel related and both individuals are self-isolating.</li>
+</ul>
+<p>The one case in Zone 7 (Miramichi region) is:</p>
+<ul>
+<li>an individual 50-59. The case is under investigation and self-isolating.</li>
+</ul>
+
+==================================================
+news_release.2021.03.0165.html
+
+<p>FREDERICTON (GNB) – Public Health reported five new cases today.</p>
+<p>The one case in Zone 1 (Moncton region) is an individual 20-29 and is travel related.</p>
+<p>The three cases in Zone 4 (Edmundston region) are as follows:</p>
+<ul>
+<li>two people 20-29; and</li>
+</ul>
+<ul>
+<li>an individual 70-79.</li>
+</ul>
+<p>The one case in Zone 7 (Miramichi region) is an individual 20-29. The case is under investigation.</p>
+
