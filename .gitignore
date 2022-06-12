@@ -1,0 +1,10 @@
+# Downloaded Data
+data/
+
+# Virtual Environment
+venv/
+
+# System
+.vscode/
+.ipynb_checkpoints/
+__pycache__/

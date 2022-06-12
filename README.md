@@ -16,7 +16,7 @@ into a table of the following form.
 >|  2020-12-04 | 1 | 0 | 0 | ... | 0 | 1 | 3 | ... |
 >|  2020-12-03 | 1 | 0 | 1 | ... | 1 | 3 | 0 | ... |
 
-Each label __Z*x*.A*y*__
+Each label __Z\<x\>.A\<y\>__
 indicates a zone __*x*__ and a age group __*y*__,
 and the age groups are 0-19, 20-29, 30-39, ..., 80-89,
 and above 90.
@@ -102,7 +102,7 @@ To run this script in a **terminal**,
 simply type the following command.
 
 ```sh
-python dataNB.py
+python data_nb.py
 ```
 
 Alternatively,
@@ -110,16 +110,15 @@ inside any other __*Python* script__,
 type the following codes.
 
 ```python
-import dataNB
-obj = dataNB(foldername='store',filename='dataNB.csv')
-obj.download( folderName='store' )
-obj.parse( folderName='store', patchName='patch.csv' )
-obj.save( fileName='DataNB.csv' )
+from data_nb import DataNB
+obj = DataNB()
+obj.download(folderName='data')
+obj.parse(folderName='data', patchName='patch.csv')
+obj.save(fileName='DataNB.csv')
 ```
 
 By deault,
-the resulted table will be saved as
-"dataNB.csv" (dropped 0's) and "dataNB_0.csv" (kept 0's) in the working folder,
+the resulted table will be saved as "dataNB.csv" in the working folder,
 and all related webpages will be stored in the subfolder "./store".
 The files "chunks.txt" and "log.txt"
 will also be generated
@@ -145,7 +144,7 @@ for pattern string search.
 It can be imported in Pyhon
 by calling ```import re```.
 
-### The download() mehtod
+### The `DataNB.download` mehtod
 
 The webpage *news.html*
 contains a number of hyperlinks,
@@ -208,7 +207,7 @@ Page #5 has 14 related items: 0 already exist; downloading 14 itmes... Done.
 Page #6 has 0 related items: 0 already exist; downloading 0 itmes... Done.
 ```
 
-### The parse() mehtod
+### The `DataNB.parse` mehtod
 
 Because reports of new cases have various formats,
 multiple regular expressions are needed.
@@ -317,15 +316,15 @@ until suceed or exhausted.
 As many regex as needed can be added.
 
 ```Python
-reChunkList = [
+re_chunk_list = [
     re.compile( ... ), # reChunk1
     re.compile( ... ), # reChunk2
     re.compile( ... ), # reChunk3
 ]
-def getChunk(s:str):
-    for r in reChunkList:
-        if r.search(s):
-            return r.search(s).groupdict()['chunk']
+def get_chunk(chunk: str):
+    for re_chunk in re_chunk_list:
+        if re_chunk.search(s):
+            return re_chunk.search(s).groupdict()['chunk']
     return ''
 ```
 
@@ -333,18 +332,18 @@ The following code
 stores the chunks in a hashtable.
 
 ```Python
-self.chunkData = collections.defaultdict(dict)
+self.chunk_data = collections.defaultdict(dict)
 for i,fname in enumerate(fList):
     path = os.path.join(localstore,fname)
-    with open(path,'r') as f:
-        doc = f.read()
-    date = self.getDate(doc)
-    descr = self.getDescr(doc)
-    chunk = self.getChunk(doc)
-    total = self.getTotal(descr)
-    self.chunkData[date]['filename'] = fname
-    self.chunkData[date]['total'] = total
-    self.chunkData[date]['chunk'] = chunk
+    with open(path, 'r', encoding='utf-8') as fread:
+        doc = fread.read()
+    date = self.get_date(doc)
+    descr = self.get_descr(doc)
+    chunk = self.get_chunk(doc)
+    total = self.get_total(descr)
+    self.chunk_data[date]['filename'] = fname
+    self.chunk_data[date]['total'] = total
+    self.chunk_data[date]['chunk'] = chunk
 ```
 
 ## Grinding Chunks
@@ -359,25 +358,25 @@ The following two regex
 read those three factors.
 
 ```Python
-reNumAge = re.compile(r""" # Get number of cases and the corresponding age
+re_num_age = re.compile(r""" # Get number of cases and the corresponding age
     (?P<num>\w+) 
     \s(?:individual|people)
     .*?(?P<age>(?:\d0|19))
 """, re.VERBOSE)
 
-def getNumAge(s: str):
-    s = s.lower()
-    num, age = reNumAge.search(s).groups()
-    return w2d[num], int(age)
+def get_num_age(chunk: str):
+    chunck = chunk.lower()
+    num, age = re_num_age.search(chunk).groups()
+    return word_to_int.get(num, 0), int(age)
 ```
 
 ```Python
-reZone = re.compile(r"""
+re_zone = re.compile(r"""
     Zone\s(?P<zone>\d)
 """, re.VERBOSE)
 
-def getZone(s: str):
-    zone = reZone.search(s).groupdict()['zone']
+def get_zone(s: str):
+    zone = re_zone.search(s).groupdict()['zone']
     return int(zone)
 ```
 
@@ -386,41 +385,43 @@ stores the infomation of each
 chunks, labeled by dates, in a hashtable.
 
 ```Python
-dateList = sorted(self.chunkData.keys())
-for date in dateList:
-    fname = self.chunkData[date]['filename']
-    total = self.chunkData[date]['total']
-    chunk = self.chunkData[date]['chunk']
-    d = {}
-    for s in chunk.split('\n'):
-        if self.reZone.search(s):
-            zone = self.getZone(s)
-            d = self.info[date][zone]
-        elif self.reNumAge.search(s) and d:
-            num, age = self.getNumAge(s)
-            d[age] += num
+date_list = sorted(self.chunk_data.keys())
+for date in date_list:
+    fname = self.chunk_data[date]['filename']
+    total = self.chunk_data[date]['total']
+    chunk = self.chunk_data[date]['chunk']
+    has_zone = False
+    for paragraph in chunk.split('\n'):
+        if self.re_zone.search(paragraph):
+            zone = self.get_zone(paragraph)
+            date_zone_info = self.info[date][zone]
+            has_zone = True
+        if self.re_num_age.search(paragraph) and has_zone:
+            num, age = self.get_num_age(paragraph)
+            date_zone_info[age] += num
 ```
 
-### The save() method
+### The `DataNB.save` method
 
 Extracted data are stored
 in the hash table *info*.
 The script can save it in a *.csv* file.
 
 ```Python
-# info[date][zone][age] = number of new cases
-info = defaultdict(lambda: defaultdict(lambda: defaultdict(int)))
-def save():
-    headerList = ['date'] + [f'Z{i}A{j}' for i in range(1,numZones+1) for j in self.ageLevels]
-    header = ', '.join(headerList)
-    dList = sorted(info.keys(), reverse=True)
-    with open('DataNB.csv', 'w') as f:
-        f.write(header + '\n')
-        for date in dList:
-            d = info[date]
-            row = [date] + [str(d[i][j]) for i in range(1,numZones+1) for j in ageLevels]
-            s = ', '.join(row)
-            f.write(s + '\n')
+def save(self, file_name='dataNB.csv'):
+    """save file."""
+    header = ['Date', 'Zone', 'AgeGroup', 'Count']
+    date_list = sorted(self.info.keys())
+    with open(file_name, 'w', encoding="utf-8") as fwriter:
+        writer = csv.writer(fwriter)
+        writer.writerow(header)
+        for date in date_list:
+            for zone in range(1, self.num_zones+1):
+                for age, age_descr in self.age_groups.items():
+                    count = self.info[date][zone][age]
+                    if count:
+                        row = [date, zone, age_descr, count]
+                        writer.writerow(row)
 ```
 
 ## Edge Cases
