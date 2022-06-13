@@ -20,7 +20,7 @@ NUM_ZONES = 7
 class DataNB():
     """Data NB."""
 
-    parent = r'https://www2.gnb.ca/content/gnb/en/news/'
+    parent = r'https://www2.gnb.ca/content/gnb/en/corporate/promo/covid-19/'
     word_to_int = Counter({
         'one': 1, 'an': 1, 'the': 1, 'two': 2, 'three': 3, 'four': 4, 'five': 5,
         'six': 6, 'seven': 7, 'eight': 8, 'nine': 9,
@@ -185,16 +185,16 @@ class DataNB():
     def load(self, folder_name='data'):
         """load files."""
         f_list = sorted(filter(self._is_page, os.listdir(folder_name)))
-        with open('chunks.txt', 'w', encoding='utf-8') as fw:
+        with open('chunks.txt', 'w', encoding='utf-8') as fwrite:
             for fname in f_list:
                 path = os.path.join(folder_name, fname)
-                with open(path, 'r', encoding='utf-8') as f:
-                    doc = f.read()
+                with open(path, 'r', encoding='utf-8') as fread:
+                    doc = fread.read()
                 date = self._get_date(doc)
                 descr = self._get_descr(doc)
                 chunk = self._get_chunk(doc)
                 total = self._get_total(descr)
-                fw.write('='*50 + '\n' + fname + '\n\n' + chunk + '\n')
+                fwrite.write('='*50 + '\n' + fname + '\n\n' + chunk + '\n')
                 if not chunk:
                     print(f'Failed to slice {fname}\n')
                 self.chunk_data[date]['filename'] = fname
@@ -252,8 +252,8 @@ class DataNB():
         """save parsed data to file."""
         header = ['Date', 'Zone', 'AgeGroup', 'Count']
         date_list = sorted(self.info.keys())
-        with open(file_name, 'w', encoding="utf-8") as fwriter:
-            writer = csv.writer(fwriter)
+        with open(file_name, 'w', encoding="utf-8") as fwrite:
+            writer = csv.writer(fwrite)
             writer.writerow(header)
             for date in date_list:
                 for zone in range(1, NUM_ZONES + 1):

@@ -1,6 +1,8 @@
 # Fetching New Brunswick COVID-19 Data
-Counting the number of COVID-19 cases
-in New Brunswick, Canada, by zones and age levels
+The repository has two main functions:
+- Parse the reported number of COVID-19 cases
+in New Brunswick, Canada, by zones and age levels - ([data_nb.py](data_nb.py)).
+- Visulize the parse data - ([visual_nb_run.ipynb](visual_nb_run.ipynb)).
 
 ## The Task
 
